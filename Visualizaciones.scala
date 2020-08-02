@@ -100,4 +100,9 @@ display(data.groupBy("condicion_actividad","nivel_de_instruccion").pivot("genero
 
 // COMMAND ----------
 
+// DBTITLE 1,Visualizaciones
+display(data.groupBy("condicion_actividad").pivot("estado").count)
 
+// COMMAND ----------
+
+display(data.groupBy("condicion_actividad").pivot("provincia").count)
