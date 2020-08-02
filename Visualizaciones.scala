@@ -57,3 +57,18 @@ val empleosDF = data.stat.crosstab("condicion_actividad","genero").orderBy("cond
 
 // DBTITLE 1,CrossTab - Segunda forma de Presentar
 empleosDF.show(false)
+
+// COMMAND ----------
+
+// DBTITLE 1,Pivot - Edad minima en Ecuador para trabajar
+data.groupBy("condicion_actividad").pivot("genero").min("edad").orderBy("condicion_actividad").show(false)
+
+// COMMAND ----------
+
+// DBTITLE 1,Pivot
+data.groupBy("condicion_actividad").pivot("genero").max("edad").orderBy("condicion_actividad").show(false)
+
+// COMMAND ----------
+
+// DBTITLE 1,Ingreso máximo por etnias y tipo de empleo.
+data.groupBy("condicion_actividad").pivot("etnia").max("ingreso_laboral").orderBy("condicion_actividad").show(false)
