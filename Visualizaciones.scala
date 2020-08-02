@@ -72,3 +72,19 @@ data.groupBy("condicion_actividad").pivot("genero").max("edad").orderBy("condici
 
 // DBTITLE 1,Ingreso máximo por etnias y tipo de empleo.
 data.groupBy("condicion_actividad").pivot("etnia").max("ingreso_laboral").orderBy("condicion_actividad").show(false)
+
+// COMMAND ----------
+
+// DBTITLE 1,Frecuencia de tipos de empleo por provincias del Ecuador
+data.groupBy("condicion_actividad").pivot("provincia").count.show(false)
+
+// COMMAND ----------
+
+// DBTITLE 1,Estado civil relacionado con el tipo de empleo
+data.groupBy("condicion_actividad").pivot("estado").count.show(false)
+
+// COMMAND ----------
+
+// DBTITLE 1,Promedio de edades referentes a los tipos de empleo por etnias
+import org.apache.spark.sql.functions._
+data.groupBy("condicion_actividad").pivot("etnia").agg(round(avg("edad"))).orderBy("condicion_actividad").show(false)
