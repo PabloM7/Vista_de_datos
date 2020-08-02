@@ -88,3 +88,16 @@ data.groupBy("condicion_actividad").pivot("estado").count.show(false)
 // DBTITLE 1,Promedio de edades referentes a los tipos de empleo por etnias
 import org.apache.spark.sql.functions._
 data.groupBy("condicion_actividad").pivot("etnia").agg(round(avg("edad"))).orderBy("condicion_actividad").show(false)
+
+// COMMAND ----------
+
+// DBTITLE 1,Tablas Dinámicas
+display(data.groupBy("etnia","provincia").pivot("genero").count)
+
+// COMMAND ----------
+
+display(data.groupBy("condicion_actividad","nivel_de_instruccion").pivot("genero").avg("ingreso_laboral").orderBy("condicion_actividad"))
+
+// COMMAND ----------
+
+
