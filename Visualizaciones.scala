@@ -100,9 +100,32 @@ display(data.groupBy("condicion_actividad","nivel_de_instruccion").pivot("genero
 
 // COMMAND ----------
 
-// DBTITLE 1,Visualizaciones
+// DBTITLE 1,Untitled
 display(data.groupBy("condicion_actividad").pivot("estado").count)
 
 // COMMAND ----------
 
 display(data.groupBy("condicion_actividad").pivot("provincia").count)
+
+// COMMAND ----------
+
+val fuerzas = data.select("condicion_actividad","provincia")
+fuerzas.groupBy("condicion_actividad").count.orderBy(desc("count")).show(false)
+
+// COMMAND ----------
+
+// DBTITLE 1,¿Cual es la provincia con más participantes dentro de la encuesta?
+val fuerzas = data.select("id","provincia")
+fuerzas.groupBy("provincia").count.orderBy(desc("count")).show(1)
+
+// COMMAND ----------
+
+display(fuerzas.groupBy("provincia").count.orderBy(desc("count")))
+
+// COMMAND ----------
+
+display(data.groupBy("anio").pivot("estado").count.orderBy("anio"))
+
+// COMMAND ----------
+
+display(data.groupBy("condicion_actividad").pivot("etnia").max("ingreso_laboral").orderBy("condicion_actividad"))
