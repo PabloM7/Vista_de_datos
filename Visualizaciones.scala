@@ -129,3 +129,11 @@ display(data.groupBy("anio").pivot("estado").count.orderBy("anio"))
 // COMMAND ----------
 
 display(data.groupBy("condicion_actividad").pivot("etnia").max("ingreso_laboral").orderBy("condicion_actividad"))
+
+// COMMAND ----------
+
+display(data.stat.crosstab("condicion_actividad","genero").orderBy("condicion_actividad_genero"))
+
+// COMMAND ----------
+
+display(data.groupBy("condicion_actividad").pivot("etnia").agg(round(avg("edad"))).orderBy("condicion_actividad"))
